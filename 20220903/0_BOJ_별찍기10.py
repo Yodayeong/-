@@ -22,7 +22,7 @@ def star(n, x):
 
     #패턴을 만들어주기
     #위, 중간, 아래로 나누어서 만들어줌
-    #삼차원 배열로 만들어줌
+    #일차원 배열에 모두 저장
     for i in stars:
         pattern.append(i*3)
 
