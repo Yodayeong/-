@@ -25,8 +25,6 @@
 
 
 
-
-
 ```python
 import sys
 
@@ -72,3 +70,35 @@ for i in stack:
 ## 문제점
 
 시간초과가 뜸...
+
+
+
+## lambda 표현식
+
+: lambda 표현식으로 익명 함수 만들기
+
+
+
+- **lambda 매개변수 : 표현식**
+
+  - ex) def hap(x, y):
+
+    - return x + y
+- => (lambda x,y : x + y)(10, 20)
+
+
+
+```python
+import sys
+
+#n과 people을 모두 입력받아줌
+n = int(sys.stdin.readline())
+people = [tuple(sys.stdin.readline().split()) for _ in range(n)]
+
+#key값을 (int로 변환해준 people의 첫번째 인덱스)로 두고 people을 sort 해줌
+people.sort(key = lambda x:int(x[0]))
+
+#sort한 people을 출력해줌
+for person in people:
+    print(*person)
+```
