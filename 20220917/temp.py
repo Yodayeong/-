@@ -1,5 +1,6 @@
-list = [(2,'hello'), (1,'hi'), (1,'dayeong')]
+list = [1, 2, 3]
 
-list.sort(key = lambda x: x[0])
+print(list[0:2])
 
-print(list)
+if 1 in list[0:2]:
+    print(1)
