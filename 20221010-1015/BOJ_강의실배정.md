@@ -81,6 +81,10 @@ print(len(class_list))
 
 ```python
 import heapq
+import sys
+sys.stdin = open('0_BOJ_강의실배정.txt', 'r')
+
+input = sys.stdin.readline
 
 n = int(input())
 
@@ -99,15 +103,55 @@ for time in times:
             #해당 교실에 자신의 끝나는 시간 heappush
             heapq.heappush(classroom, -time[1])
             break
-        #자신의 시작시간과 모든 교실의 끝나는 시간이 겹친다면,
-        else:
-            #새로운 교실을 열어줌
-            new_class = [-time[1]]
-            heapq.heapify(new_class)
-            classrooms.append(new_class)
-            break
+    #자신의 시작시간과 모든 교실의 끝나는 시간이 겹친다면,
+    else:
+        #새로운 교실을 열어줌
+        new_class = [-time[1]]
+        heapq.heapify(new_class)
+        classrooms.append(new_class)
 
 #교실의 개수 출력
+print(len(classrooms))
+```
+
+
+
+## 또 문제점..
+
+시간초과뜸 ....
+
+이중 for문 때문..... 이겠지? ㅜ
+
+=> max heap 말고 min heap으로 구현
+
+```python
+import sys
+import heapq
+
+input = sys.stdin.readline
+
+n = int(input())
+
+times = [list(map(int, input().split())) for _ in range(n)]
+#입력받은 시간들을 오름차순으로 정렬
+times.sort()
+
+#classrooms 변수에 교실들을 저장
+classrooms = []
+
+heapq.heappush(classrooms, times[0][1])
+
+for i in range(1, n):
+    #가장 일찍 끝나는 곳보다 시간이 더 빨리 시작한다면,
+    # => 모든 교실과 겹친다.
+    if classrooms[0] > times[i][0]:
+        new_class = times[i][1]
+        heapq.heappush(classrooms, new_class)
+    #그렇지 않은 경우에는,
+    #어짜피 times를 sort 해놓았으니까 앞에서부터 대체해주면 된다.
+    else:
+        heapq.heapreplace(classrooms, times[i][1])
+
 print(len(classrooms))
 ```
 
