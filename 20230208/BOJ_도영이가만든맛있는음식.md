@@ -137,3 +137,5 @@ for i in range(1, select+1):
 #results에서 가장 작은 값을 출력한다.
 print(min(results))
 ```
+
+=>시간이 44ms로 매우 적게 나옴 !!
